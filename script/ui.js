@@ -312,5 +312,5 @@ const switchConnectButton = () => {
 // Bouton déconnexion
 disconnectButton.addEventListener("click", (event) => {
 	localStorage.removeItem("isAdmin");
-	window.location.pathname = "./index.html";
+	window.location.href = "./index.html";
 });
