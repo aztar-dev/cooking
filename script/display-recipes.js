@@ -9,7 +9,7 @@ const createNewCard = (recipe) => {
 
 	const cardLink = document.createElement("a");
 	cardLink.classList.add("w-full", "relative");
-	cardLink.href = `./recipe.html?id=${recipe.id}`;
+	cardLink.href = `./src/recipe.html?id=${recipe.id}`;
 	card.appendChild(cardLink);
 
 	const cardImage = document.createElement("div");
@@ -127,7 +127,7 @@ document.getElementById("recipes-list").addEventListener("click", (event) => {
 
 	if (target.closest(".edit-recipe")) {
 		const recipeIdToEdit = recipeCard.getAttribute("data-id");
-		window.location.href = `./edit-recipe.html?id=${recipeIdToEdit}`;
+		window.location.href = `./src/edit-recipe.html?id=${recipeIdToEdit}`;
 	} else if (target.closest(".delete-recipe")) {
 		const recipeIdToDelete = recipeCard.getAttribute("data-id");
 		deleteRecipe(recipeIdToDelete);
