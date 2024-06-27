@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>Recette</title>
+	</head>
+	<body class="bg-zinc-200/30 h-svh lg:w-2/3 lg:m-auto xl:w-6/10">
+		<header class="flex justify-between items-center p-8">
+			<div>
+				<a href="./index.html"><img src="../media/logo.png" alt="logo" class="max-w-32 h-auto" /></a>
+			</div>
+			<nav>
+				<ul id="header-buttons-list" class="flex flex-col">
+					<li class="bg-zinc-500 text-white rounded-3xl hover:transition-colors hover:bg-zinc-600 hover:outline hover:outline-1 hover:outline-zinc-600 flex justify-center items-center">
+						<a href="./login.html"><button id="connect" class="px-4 py-2 flex justify-center items-center">Connexion</button></a>
+					</li>
+					<li class="bg-zinc-500 text-white rounded-3xl hover:transition-colors hover:bg-zinc-600 hover:outline hover:outline-1 hover:outline-zinc-600 flex justify-center items-center">
+						<button id="disconnect" class="px-4 py-2 flex justify-center items-center">Déconnexion</button>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<section class="w-full flex flex-col justify-evenly items-center bg-zinc-200/30 shadow">
+				<div id="img-container" class="w-full flex justify-center items-center max-h-96"></div>
+				<div id="recipe-preview" class="w-full flex flex-col justify-center p-8 gap-2">
+					<div>
+						<div id="category-container"></div>
+						<div id="admin-buttons-container"></div>
+					</div>
+					<div id="recipe-name"></div>
+					<div id="recipe-misc" class="flex justify-between items-center">
+						<div id="times" class="flex flex-col gap-1 py-2"></div>
+						<div id="ratings"></div>
+					</div>
+					<div id="recipe-description"></div>
+				</div>
+			</section>
+
+			<div class="lg:grid lg:grid-cols-2 lg:gap-8">
+				<section id="ingredients-container" class="p-8">
+					<h2 class="text-2xl font-bold mb-4">Ingrédients</h2>
+					<div id="ingredients-list" class="flex flex-col gap-4"></div>
+				</section>
+
+				<section id="recipe-steps" class="px-8 pt-8 pb-14">
+					<h2 class="text-2xl font-bold mb-4">Etapes de la recette</h2>
+					<div class=""><p id="recipe-steps-list"></p></div>
+				</section>
+			</div>
+		</main>
+
+		<!-- <script src="../script/script.js"></script> -->
+		<script src="../script/ui.js"></script>
+		<script src="../script/recipe.js"></script>
+	</body>
+</html>

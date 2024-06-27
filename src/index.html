@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>Document</title>
+	</head>
+	<body class="bg-zinc-200/30 w-full">
+		<header class="flex justify-between items-center p-8">
+			<div>
+				<a href="./index.html"><img src="../media/logo.png" alt="logo" class="max-w-32 h-auto" /></a>
+			</div>
+			<nav>
+				<ul id="header-buttons-list" class="flex flex-col">
+					<li class="bg-zinc-500 text-white rounded-3xl hover:transition-colors hover:bg-zinc-600 hover:outline hover:outline-1 hover:outline-zinc-600 flex justify-center items-center">
+						<a href="./login.html"><button id="connect" class="px-4 py-2 flex justify-center items-center">Connexion</button></a>
+					</li>
+					<li class="bg-zinc-500 text-white rounded-3xl hover:transition-colors hover:bg-zinc-600 hover:outline hover:outline-1 hover:outline-zinc-600 flex justify-center items-center">
+						<button id="disconnect" class="px-4 py-2 flex justify-center items-center">Déconnexion</button>
+					</li>
+					<li class="bg-zinc-500 text-white rounded-3xl hover:transition-colors hover:bg-zinc-600 hover:outline hover:outline-1 hover:outline-zinc-600">
+						<a href="#"><button id="add" class="px-4 py-2 hidden">+ Nouvelle recette</button></a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<main class="w-full">
+			<!-- Fenêtre modale CREATION DE RECETTE -->
+			<div id="modal-recipe" class="fixed top-0 left-0 w-screen h-screen bg-zinc-900 bg-opacity-70 backdrop-blur justify-center items-center hidden z-50">
+				<div id="modal-content" class="bg-zinc-100 p-5 w-5/6 rounded-lg shadow-lg flex flex-col gap-8 lg:w-2/3 xl:w-1/2">
+					<span id="close" class="self-end cursor-pointer text-3xl font-bold hover:text-red-600">&times;</span>
+					<h2 class="text-2xl font-bold self-center">Nouvelle recette</h2>
+					<form id="new-recipe-form" class="flex flex-col gap-6 px-8 pb-8">
+						<!-- PAGE 1 -->
+						<div id="recipe-name" class="flex flex-col gap-2">
+							<label for="name">Nom de la recette :</label>
+							<input type="text" id="name" name="name" />
+						</div>
+						<div id="recipe-description" class="flex flex-col gap-2">
+							<label for="description">Courte description de la recette :</label>
+							<textarea id="description" name="description" rows="3"></textarea>
+						</div>
+						<div id="recipe-img" class="flex flex-col gap-2">
+							<label for="img">Image de la recette :</label>
+							<input type="url" id="img" name="img" />
+						</div>
+
+						<!-- PAGE 2 -->
+						<div id="recipe-ingredients" class="flex-col gap-4 hidden pb-4">
+							<div class="flex flex-col gap-1">
+								<label for="ingredients-name">Ingrédient :</label>
+								<input type="text" id="ingredients-name" name="ingredients-name" class="" />
+							</div>
+							<div class="flex flex-col gap-1">
+								<label for="ingredients-quantity">Quantité :</label>
+								<input type="number" id="ingredients-quantity" name="ingredients-quantity" class="grow" />
+							</div>
+							<div class="flex flex-col gap-1">
+								<label for="ingredients-unit">Unité :</label>
+								<select id="ingredients-unit" name="ingredients-unit" class="grow">
+									<option value="" disabled selected>Choisissez une unité</option>
+									<option value="pièce(s)">pièce(s)</option>
+									<option value="c. à soupe">c. à soupe</option>
+									<option value="g">g</option>
+									<option value="mL">mL</option>
+									<option value="cL">cL</option>
+								</select>
+							</div>
+							<button id="add-ingredient-btn" class="bg-zinc-500 hover:bg-zinc-600 text-white font-semibold p-1 rounded-r text-lg transition-colors">
+								<i class="fa-solid fa-plus"></i>
+							</button>
+							<ul id="ingredients-list" class="flex flex-col gap-2"></ul>
+						</div>
+
+						<!-- PAGE 3 -->
+						<div id="recipe-steps" class="flex-col gap-2 hidden">
+							<label for="steps">Etapes de préparation de la recette:</label>
+							<textarea id="steps" name="steps" rows="10"></textarea>
+						</div>
+
+						<!-- PAGE 4 -->
+						<div id="recipe-preparation-time" class="flex-col gap-2 hidden">
+							<label for="preparation-time">Temps de préparation:</label>
+							<div class="flex gap-4">
+								<input type="number" id="preparation-time" name="preparation-time" class="" />
+								<select id="preparation-time-unit" name="preparation-time-unit" class="">
+									<option value="h" selected>h</option>
+									<option value="min">min</option>
+									<option value="s">s</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="recipe-cooking-time" class="flex-col gap-2 hidden">
+							<label for="cooking-time">Temps de cuisson:</label>
+							<div class="flex gap-4">
+								<input type="number" id="cooking-time" name="cooking-time" class="" />
+								<select id="cooking-time-unit" name="cooking-time-unit" class="">
+									<option value="h" selected>h</option>
+									<option value="min">min</option>
+									<option value="s">s</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="form-buttons" class="flex justify-end gap-2 pt-10 pb-6">
+							<button id="cancel-btn" class="bg-red-500 hover:bg-red-600 text-zinc-50 font-semibold p-2 rounded-lg transition-colors">Réinitialiser</button>
+							<button id="previous-btn" class="bg-zinc-500 hover:bg-zinc-600 text-zinc-50 font-semibold p-2 rounded-lg transition-colors hidden">Précédent</button>
+							<button id="next-btn" class="bg-zinc-500 hover:bg-zinc-600 text-zinc-50 font-semibold p-2 rounded-lg transition-colors">Suivant</button>
+							<button type="submit" id="submit-btn" class="bg-green-500 hover:bg-green-600 text-zinc-50 font-semibold p-2 rounded-lg transition-colors hidden">Enregistrer</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="lg:w-2/3 lg:m-auto xl:w-6/10">
+				<!-- Barre de recherche -->
+				<div class="flex flex-col">
+					<section
+						class="bg-[url(https://img-3.journaldesfemmes.fr/ADkK8WwqpEmzBbCsG23CDVRiOjU=/1240x/smart/d8b1369b6a5e4c0a88bfeeb334b453f0/ccmcms-jdf/36362482.jpg)] bg-cover shadow-lg flex justify-center items-center h-96"
+					>
+						<div class="flex w-full justify-center">
+							<input
+								type="search"
+								id="search-recipe"
+								class="outline-none p-2 rounded-l focus:outline-zinc-400 focus:outline-2 focus:outline-offset-0 w-3/5 lg:p-4 lg:w-4/5"
+								placeholder="Rechercher une recette..."
+							/>
+							<button id="search-btn" class="bg-zinc-500 hover:bg-zinc-600 text-white font-semibold p-2 rounded-r text-lg transition-colors">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</div>
+					</section>
+
+					<div class="p-8 lg:px-0">
+						<h2 class="pb-4 font-bold text-3xl">Toutes les recettes :</h2>
+
+						<section id="recipes-list" class="flex flex-col gap-10 items-center md:grid md:grid-cols-2 md:gap-8"></section>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<script src="../script/ui.js"></script>
+		<script src="../script/script.js"></script>
+		<script src="../script/display-recipes.js"></script>
+	</body>
+</html>
