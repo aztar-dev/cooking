@@ -103,7 +103,7 @@ if (recipeToEdit) {
 		localStorage.setItem("recipes", JSON.stringify(recipes));
 
 		// Rediriger vers la page principale
-		window.location.href = "../index.html";
+		window.location.href = "./index.html";
 	});
 } else {
 	// Gérer le cas où aucune recette correspondante n'est trouvée
