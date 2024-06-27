@@ -23,7 +23,7 @@ submitButton.addEventListener("click", (event) => {
 	event.preventDefault();
 	if (checkLogin(usernameInput.value, passwordInput.value)) {
 		localStorage.setItem("isAdmin", true);
-		window.location.href = "/index.html";
+		window.location.href = "../index.html";
 	} else {
 		alert("Vous n'êtes pas un administrateur");
 	}
@@ -31,5 +31,5 @@ submitButton.addEventListener("click", (event) => {
 
 cancelButton.addEventListener("click", (event) => {
 	event.preventDefault();
-	window.location.href = "/index.html";
+	window.location.href = "../index.html";
 });
